@@ -5,8 +5,7 @@ import { GET_POKEMON_NAMES } from "~/graphql/queries";
 export const searchPokemon: ActionFunction = async ( {request} ) => {
     const form = await request.formData()
     const name = form.get("search-bar")
-
-    const data = await client.request(GET_POKEMON_NAMES, { searchQuery: name+"%" })
-  
-    return { message: JSON.stringify(data.pokemons) };
+    const response = await client.request(GET_POKEMON_NAMES, { searchQuery: name+"%" })
+    
+    return response;
   };

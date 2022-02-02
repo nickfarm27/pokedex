@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react";
-import { GraphQLClient } from "graphql-request";
-import { GET_POKEMON_NAMES } from "../graphql/queries";
+import { useEffect, useRef, useState } from "react";
+import { Form, useActionData, useSubmit } from "remix";
 
 export default function SearchBar() {
     const [searchValue, setSearchValue] = useState("");
     const [focus, setFocus] = useState(false);
-
-    const client = new GraphQLClient("https://beta.pokeapi.co/graphql/v1beta");
+    const data = useActionData()
+    const submit = useSubmit()
+    const formRef = useRef(null)
 
     useEffect(() => {
         const search = setTimeout(() => {
             if (focus) {
-                console.log("SEARCHING");
-                client.request(GET_POKEMON_NAMES);
+                submit(formRef.current)
             }
         }, 1000);
 
@@ -23,7 +22,6 @@ export default function SearchBar() {
 
     function searchChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
         setSearchValue(e.target.value);
-        console.log(searchValue);
     }
 
     function toggleFocus() {
@@ -31,7 +29,7 @@ export default function SearchBar() {
     }
 
     return (
-        <div className="relative w-96 mr-0">
+        <Form className="relative w-96 mr-0" method="post" autoComplete="off" ref={formRef}>
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                 <svg
                     className="w-5 h-5 text-gray-500"
@@ -48,6 +46,7 @@ export default function SearchBar() {
             </div>
             <input
                 type="text"
+                name="search-bar"
                 id="search-bar"
                 className="block p-2 pl-10 w-full font-normal text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search"
@@ -56,7 +55,7 @@ export default function SearchBar() {
                 onFocus={toggleFocus}
                 onBlur={toggleFocus}
             />
-            <div className="absolute right-0">POKEMON</div>
-        </div>
+            <div className="absolute right-0"><p>{data ? data.message : "Waiting..."}</p></div>
+        </Form>
     );
 }

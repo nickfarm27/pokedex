@@ -19,8 +19,6 @@ export const meta: MetaFunction = () => {
 };
 
 export default function App() {
-  // https://beta.pokeapi.co/graphql/v1beta
-
   return (
     <html lang="en">
       <head>

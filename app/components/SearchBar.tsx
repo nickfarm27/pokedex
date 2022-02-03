@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Form, Link, useActionData, useSubmit, useTransition } from "remix";
 
-function capitalizeName(name: string) {
+export function capitalizeName(name: string) {
     return name
         .split("-")
         .map((str) => str.charAt(0).toUpperCase() + str.substring(1))

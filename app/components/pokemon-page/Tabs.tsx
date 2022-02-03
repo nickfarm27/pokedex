@@ -1,25 +1,14 @@
+import { capitalizeName } from "~/store/functions";
+import { Move as MoveType, Stat as StatType } from "~/store/types";
 import Move from "./Move";
-import { capitalizeName } from "./SearchBar";
 import Stat from "./Stat";
 
-type Move = {
-    move: {
-        name: string;
-    };
-    level: number;
-};
-
-type Stat = {
-    stat: { name: string };
-    base_stat: number;
-};
-
 type Props = {
-    stats: Stat[];
-    moves: Move[];
+    stats: StatType[];
+    moves: MoveType[];
 };
 
-function compare(a: Move, b: Move) {
+function compare(a: MoveType, b: MoveType) {
     if (a.level < b.level) return -1;
     if (a.level > b.level) return 1;
     return 0;
@@ -99,6 +88,7 @@ export default function Tabs(props: Props) {
                     <div className="flex flex-wrap flex-col overflow-x-auto max-h-[35vh] gap-4 pb-4">
                         {moves.sort(compare).map((move) => (
                             <Move
+                                key={move.move.name}
                                 name={capitalizeName(move.move.name)}
                                 level={move.level}
                             />

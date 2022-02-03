@@ -30,7 +30,7 @@ export const GET_POKEMON_DETAILS = gql`
                 }
                 base_stat
             }
-            moves: pokemon_v2_pokemonmoves(order_by: { level: asc }) {
+            moves: pokemon_v2_pokemonmoves(where: {level: {_gte: 1}}, distinct_on: move_id) {
                 move: pokemon_v2_move {
                     name
                 }

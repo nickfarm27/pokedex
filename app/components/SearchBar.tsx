@@ -52,6 +52,7 @@ export default function SearchBar() {
             ref={formRef}
             onFocus={enableFocus}
             onBlur={disableFocus}
+            replace
         >
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                 <svg

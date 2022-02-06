@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { capitalizeName } from "~/store/functions";
-import { Move, Stat, Type } from "~/store/types";
+import { AddedPokemon, Move, Stat, Type } from "~/store/types";
 import Colors from "../Colors";
 import TypeBadges from "../TypeBadges";
 import Tabs from "./Tabs";
@@ -14,12 +14,6 @@ type Props = {
     types: Type[];
     stats: Stat[];
     moves: Move[];
-};
-
-type AddedPokemon = {
-    id: number;
-    name: string;
-    types: Type[];
 };
 
 export default function PokemonDetails(props: Props) {

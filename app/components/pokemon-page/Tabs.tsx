@@ -14,6 +14,7 @@ function compare(a: MoveType, b: MoveType) {
     return 0;
 }
 
+// TODO: Moves tab can't be shown when clicked. Fix it
 export default function Tabs(props: Props) {
     // https://stackoverflow.com/questions/4020796/finding-the-max-value-of-an-attribute-in-an-array-of-objects?rq=1
     const maxStatValue = Math.max.apply(

@@ -13,3 +13,9 @@ export type Stat = {
 export type Type = {
     type: { name: string };
 };
+
+export type AddedPokemon = {
+    id: number;
+    name: string;
+    types: Type[];
+};

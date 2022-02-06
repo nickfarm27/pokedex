@@ -42,7 +42,7 @@ export default function Tabs(props: Props) {
         <>
             <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
                 <ul
-                    className="flex flex-wrap -mb-px"
+                    className="flex flex-wrap -mb-px justify-center sm:justify-start"
                     id="tabs"
                     data-tabs-toggle="#tabContent"
                     role="tablist"
@@ -77,10 +77,10 @@ export default function Tabs(props: Props) {
                     </li>
                 </ul>
             </div>
-            <div id="tabContent" className="">
+            <div id="tabContent" className="flex-grow overflow-auto">
                 {activeTab === "STATS" ? 
                 <div
-                    className="px-4 pb-2 overflow-y-auto h-[35vh]"
+                    className="px-4 pb-2"
                     id="stats"
                     role="tabpanel"
                     aria-labelledby="stats-tab"
@@ -95,12 +95,12 @@ export default function Tabs(props: Props) {
                     ))}
                 </div> : 
                 <div
-                    className=""
+                    className="max-h-full"
                     id="moves"
                     role="tabpanel"
                     aria-labelledby="moves-tab"
                 >
-                    <div className="flex flex-wrap flex-col overflow-x-auto max-h-[35vh] gap-4 pb-4">
+                    <div className="flex flex-wrap flex-col max-h-[40vh] gap-4 pb-4">
                         {moves.sort(compare).map((move) => (
                             <Move
                                 key={move.move.name}

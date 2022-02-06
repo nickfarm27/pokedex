@@ -67,19 +67,19 @@ export default function PokemonDetails(props: Props) {
 
     return (
         <>
-            <div className="h-1/2 w-3/6 mx-auto flex py-10">
-                <div className="w-2/5 text-center flex flex-col justify-evenly items-center">
-                    <h1 className="font-semibold text-3xl my-4">
+            <div className="sm:h-1/2 w-11/12 mx-auto flex flex-col sm:flex-row sm:w-3/4 lg:w-3/5 xl:w-1/2">
+                <div className="w-full sm:w-2/5 text-center flex flex-col justify-evenly items-center py-10">
+                    <h1 className="font-semibold text-3xl">
                         {capitalizeName(props.name)}
                     </h1>
                     <img
                         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`}
                         alt={capitalizeName(props.name)}
-                        className="w-4/5"
+                        className="sm:h-full min-w-[70%] object-cover"
                     />
                 </div>
-                <div className="w-3/5 flex flex-col justify-between pl-6">
-                    <div className="flex">
+                <div className="w-full sm:w-3/5 flex flex-col justify-between sm:pl-6 sm:py-10 text-center sm:text-left">
+                    <div className="flex justify-center sm:justify-start">
                         <Colors />
                         {props.types.map((type) => (
                             <TypeBadges
@@ -88,25 +88,25 @@ export default function PokemonDetails(props: Props) {
                             />
                         ))}
                     </div>
-                    <div className="">
-                        <div className="my-1 flex items-center">
+                    <div className="my-6 sm:my-0">
+                        <div className="my-2 sm:my-1 flex items-center">
                             <p className="w-1/2 font-medium">Base Experience</p>
                             <p className="w-1/2 font-semibold">{props.baseExperience}</p>
                         </div>
-                        <div className="my-1 flex items-center">
+                        <div className="my-2 sm:my-1 flex items-center">
                             <p className="w-1/2 font-medium">Height</p>
                             <p className="w-1/2 font-semibold">{props.height / 10 + " m"}</p>
                         </div>
-                        <div className="my-1 flex items-center">
+                        <div className="my-2 sm:my-1 flex items-center">
                             <p className="w-1/2 font-medium">Weight</p>
                             <p className="w-1/2 font-semibold">{props.weight / 10 + " kg"}</p>
                         </div>
                     </div>
-                    <div className="">
+                    <div className="mb-6 sm:mb-0">
                         {added ? (
                             <button
                                 type="button"
-                                className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                                 onClick={removeFromCollection}
                             >
                                 Remove From Collection
@@ -114,7 +114,7 @@ export default function PokemonDetails(props: Props) {
                         ) : (
                             <button
                                 type="button"
-                                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 onClick={addToCollection}
                             >
                                 Add To Collection
@@ -123,7 +123,7 @@ export default function PokemonDetails(props: Props) {
                     </div>
                 </div>
             </div>
-            <div className="h-1/2 w-1/2 mx-auto flex flex-col">
+            <div className="sm:h-1/2 w-11/12 mx-auto flex flex-col sm:w-3/4 lg:w-3/5 xl:w-1/2">
                 <Tabs stats={props.stats} moves={props.moves} />
             </div>
         </>

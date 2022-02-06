@@ -26,7 +26,7 @@ export default function Pokemon() {
     return (
         <div className="h-screen flex flex-col">
             <NavBar />
-            <div className="flex-grow">
+            <div className="sm:flex-grow">
                 {data.pokemon && data.pokemon[0] ? (
                     <PokemonDetails
                         id={data.pokemon[0].id}

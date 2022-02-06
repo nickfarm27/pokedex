@@ -23,7 +23,7 @@ export default function Index() {
             <NavBar />
             <h1 className="text-center font-semibold text-2xl mt-4">Pokemon Owned</h1>
             {pokemonList.length ? (
-                <div className="w-1/2 mx-auto py-4 flex-grow overflow-y-auto">
+                <div className="w-1/2 mx-auto my-4 flex-grow overflow-y-auto">
                     {pokemonList.map((pokemon) => (
                         <Pokemon
                             key={pokemon.id}

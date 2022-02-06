@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { capitalizeName } from "~/store/functions";
 import { Move as MoveType, Stat as StatType } from "~/store/types";
 import Move from "./Move";
@@ -16,6 +17,8 @@ function compare(a: MoveType, b: MoveType) {
 
 // TODO: Moves tab can't be shown when clicked. Fix it
 export default function Tabs(props: Props) {
+    const [activeTab, setActiveTab] = useState("STATS");
+
     // https://stackoverflow.com/questions/4020796/finding-the-max-value-of-an-attribute-in-an-array-of-objects?rq=1
     const maxStatValue = Math.max.apply(
         Math,
@@ -26,6 +29,14 @@ export default function Tabs(props: Props) {
 
     const stats = props.stats;
     const moves = props.moves;
+
+    function setStatsTab() {
+        setActiveTab("STATS")
+    }
+
+    function setMovesTab() {
+        setActiveTab("MOVES")
+    }
 
     return (
         <>
@@ -38,26 +49,28 @@ export default function Tabs(props: Props) {
                 >
                     <li className="mr-2" role="presentation">
                         <button
-                            className="inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 active"
+                            className={`inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 ${activeTab === "STATS" && "active"}`}
                             id="stats-tab"
                             data-tabs-target="#stats"
                             type="button"
                             role="tab"
                             aria-controls="stats"
                             aria-selected="true"
+                            onClick={setStatsTab}
                         >
                             Stats
                         </button>
                     </li>
                     <li className="mr-2" role="presentation">
                         <button
-                            className="inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                            className={`inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 ${activeTab === "MOVES" && "active"}`}
                             id="moves-tab"
                             data-tabs-target="#moves"
                             type="button"
                             role="tab"
                             aria-controls="moves"
                             aria-selected="false"
+                            onClick={setMovesTab}
                         >
                             Moves
                         </button>
@@ -65,6 +78,7 @@ export default function Tabs(props: Props) {
                 </ul>
             </div>
             <div id="tabContent" className="">
+                {activeTab === "STATS" ? 
                 <div
                     className="px-4 pb-2 overflow-y-auto h-[35vh]"
                     id="stats"
@@ -79,9 +93,9 @@ export default function Tabs(props: Props) {
                             maxStatValue={maxStatValue}
                         />
                     ))}
-                </div>
+                </div> : 
                 <div
-                    className="hidden"
+                    className=""
                     id="moves"
                     role="tabpanel"
                     aria-labelledby="moves-tab"
@@ -95,7 +109,7 @@ export default function Tabs(props: Props) {
                             />
                         ))}
                     </div>
-                </div>
+                </div> }
             </div>
         </>
     );

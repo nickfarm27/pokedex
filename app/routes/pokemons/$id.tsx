@@ -1,8 +1,8 @@
 import { ActionFunction, LoaderFunction, useLoaderData } from "remix";
 import { searchPokemon } from "~/actions/searchPokemon";
-import NavBar from "~/components/NavBar";
 import { client } from "~/graphql/client";
 import { GET_POKEMON_DETAILS } from "~/graphql/queries";
+import NavBar from "~/components/NavBar";
 import PokemonDetails from "~/components/pokemon-page/PokemonDetails";
 
 export const action: ActionFunction = searchPokemon;

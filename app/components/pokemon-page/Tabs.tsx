@@ -15,7 +15,6 @@ function compare(a: MoveType, b: MoveType) {
     return 0;
 }
 
-// TODO: Moves tab can't be shown when clicked. Fix it
 export default function Tabs(props: Props) {
     const [activeTab, setActiveTab] = useState("STATS");
 
@@ -31,11 +30,11 @@ export default function Tabs(props: Props) {
     const moves = props.moves;
 
     function setStatsTab() {
-        setActiveTab("STATS")
+        setActiveTab("STATS");
     }
 
     function setMovesTab() {
-        setActiveTab("MOVES")
+        setActiveTab("MOVES");
     }
 
     return (
@@ -49,7 +48,9 @@ export default function Tabs(props: Props) {
                 >
                     <li className="mr-2" role="presentation">
                         <button
-                            className={`inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 ${activeTab === "STATS" && "active"}`}
+                            className={`inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 ${
+                                activeTab === "STATS" && "active"
+                            }`}
                             id="stats-tab"
                             data-tabs-target="#stats"
                             type="button"
@@ -63,7 +64,9 @@ export default function Tabs(props: Props) {
                     </li>
                     <li className="mr-2" role="presentation">
                         <button
-                            className={`inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 ${activeTab === "MOVES" && "active"}`}
+                            className={`inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 ${
+                                activeTab === "MOVES" && "active"
+                            }`}
                             id="moves-tab"
                             data-tabs-target="#moves"
                             type="button"
@@ -78,38 +81,40 @@ export default function Tabs(props: Props) {
                 </ul>
             </div>
             <div id="tabContent" className="flex-grow overflow-auto">
-                {activeTab === "STATS" ? 
-                <div
-                    className="px-4 pb-2"
-                    id="stats"
-                    role="tabpanel"
-                    aria-labelledby="stats-tab"
-                >
-                    {stats.map((stat) => (
-                        <Stat
-                            key={stat.stat.name}
-                            name={capitalizeName(stat.stat.name)}
-                            baseStat={stat.base_stat}
-                            maxStatValue={maxStatValue}
-                        />
-                    ))}
-                </div> : 
-                <div
-                    className="max-h-full"
-                    id="moves"
-                    role="tabpanel"
-                    aria-labelledby="moves-tab"
-                >
-                    <div className="flex flex-wrap flex-col max-h-[40vh] gap-4 pb-4">
-                        {moves.sort(compare).map((move) => (
-                            <Move
-                                key={move.move.name}
-                                name={capitalizeName(move.move.name)}
-                                level={move.level}
+                {activeTab === "STATS" ? (
+                    <div
+                        className="px-4 pb-2"
+                        id="stats"
+                        role="tabpanel"
+                        aria-labelledby="stats-tab"
+                    >
+                        {stats.map((stat) => (
+                            <Stat
+                                key={stat.stat.name}
+                                name={capitalizeName(stat.stat.name)}
+                                baseStat={stat.base_stat}
+                                maxStatValue={maxStatValue}
                             />
                         ))}
                     </div>
-                </div> }
+                ) : (
+                    <div
+                        className="max-h-full"
+                        id="moves"
+                        role="tabpanel"
+                        aria-labelledby="moves-tab"
+                    >
+                        <div className="flex flex-wrap flex-col max-h-[40vh] gap-4 pb-4">
+                            {moves.sort(compare).map((move) => (
+                                <Move
+                                    key={move.move.name}
+                                    name={capitalizeName(move.move.name)}
+                                    level={move.level}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
         </>
     );

@@ -24,7 +24,10 @@ export default function Pokemon(props: Props) {
                 <h1 className="font-medium">{capitalizeName(props.name)}</h1>
                 <div className="flex">
                     {props.types.map((type) => (
-                        <TypeBadges key={type.type.name} type={type.type.name} />
+                        <TypeBadges
+                            key={type.type.name}
+                            type={type.type.name}
+                        />
                     ))}
                 </div>
             </div>

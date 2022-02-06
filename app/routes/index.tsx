@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ActionFunction } from "remix";
 import { searchPokemon } from "~/actions/searchPokemon";
-import Pokemon from "~/components/home-page/Pokemon";
-import NavBar from "~/components/NavBar";
 import { AddedPokemon } from "~/store/types";
+import NavBar from "~/components/NavBar";
+import Pokemon from "~/components/home-page/Pokemon";
 
 export const action: ActionFunction = searchPokemon;
 
@@ -21,7 +21,9 @@ export default function Index() {
     return (
         <div className="h-screen flex flex-col">
             <NavBar />
-            <h1 className="text-center font-semibold text-2xl mt-4">Pokemon Owned</h1>
+            <h1 className="text-center font-semibold text-2xl mt-4">
+                Pokemon Owned
+            </h1>
             {pokemonList.length ? (
                 <div className="w-11/12 mx-auto my-4 flex-grow overflow-y-auto sm:w-3/4 lg:w-3/5 xl:w-1/2">
                     {pokemonList.map((pokemon) => (

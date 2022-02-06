@@ -30,7 +30,7 @@ export default function PokemonDetails(props: Props) {
             if (foundPokemon.length) {
                 setAdded(true);
             } else {
-                setAdded(false)
+                setAdded(false);
             }
         }
     }, [added, props.id]);
@@ -50,7 +50,7 @@ export default function PokemonDetails(props: Props) {
         pokemons = [...pokemons, newPokemon];
         localStorage.setItem("pokemons", JSON.stringify(pokemons));
 
-        setAdded(true)
+        setAdded(true);
     }
 
     function removeFromCollection() {
@@ -59,10 +59,10 @@ export default function PokemonDetails(props: Props) {
         let pokemons: AddedPokemon[] = JSON.parse(
             pokemonsJson ? pokemonsJson : "[]"
         );
-        pokemons = pokemons.filter((pokemon) => pokemon.id !== props.id)
+        pokemons = pokemons.filter((pokemon) => pokemon.id !== props.id);
         localStorage.setItem("pokemons", JSON.stringify(pokemons));
 
-        setAdded(false)
+        setAdded(false);
     }
 
     return (
@@ -91,15 +91,21 @@ export default function PokemonDetails(props: Props) {
                     <div className="my-6 sm:my-0">
                         <div className="my-2 sm:my-1 flex items-center">
                             <p className="w-1/2 font-medium">Base Experience</p>
-                            <p className="w-1/2 font-semibold">{props.baseExperience}</p>
+                            <p className="w-1/2 font-semibold">
+                                {props.baseExperience}
+                            </p>
                         </div>
                         <div className="my-2 sm:my-1 flex items-center">
                             <p className="w-1/2 font-medium">Height</p>
-                            <p className="w-1/2 font-semibold">{props.height / 10 + " m"}</p>
+                            <p className="w-1/2 font-semibold">
+                                {props.height / 10 + " m"}
+                            </p>
                         </div>
                         <div className="my-2 sm:my-1 flex items-center">
                             <p className="w-1/2 font-medium">Weight</p>
-                            <p className="w-1/2 font-semibold">{props.weight / 10 + " kg"}</p>
+                            <p className="w-1/2 font-semibold">
+                                {props.weight / 10 + " kg"}
+                            </p>
                         </div>
                     </div>
                     <div className="mb-6 sm:mb-0">

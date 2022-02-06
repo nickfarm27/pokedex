@@ -67,7 +67,7 @@ export default function PokemonDetails(props: Props) {
 
     return (
         <>
-            <div className="h-1/2 w-3/6 mx-auto flex">
+            <div className="h-1/2 w-3/6 mx-auto flex py-10">
                 <div className="w-2/5 text-center flex flex-col justify-evenly items-center">
                     <h1 className="font-semibold text-3xl my-4">
                         {capitalizeName(props.name)}
@@ -78,8 +78,8 @@ export default function PokemonDetails(props: Props) {
                         className="w-4/5"
                     />
                 </div>
-                <div className="w-3/5 flex flex-col justify-end pl-6">
-                    <div className="">
+                <div className="w-3/5 flex flex-col justify-between pl-6">
+                    <div className="flex">
                         <Colors />
                         {props.types.map((type) => (
                             <TypeBadges
@@ -88,19 +88,21 @@ export default function PokemonDetails(props: Props) {
                             />
                         ))}
                     </div>
-                    <div className="flex py-8 rounded-lg">
-                        <div className="w-1/2 font-medium">
-                            <p className="my-1">Base Experience</p>
-                            <p className="my-1">Height</p>
-                            <p className="my-1">Weight</p>
+                    <div className="">
+                        <div className="my-1 flex items-center">
+                            <p className="w-1/2 font-medium">Base Experience</p>
+                            <p className="w-1/2 font-semibold">{props.baseExperience}</p>
                         </div>
-                        <div className="font-semibold w-1/2">
-                            <p className="my-1">{props.baseExperience}</p>
-                            <p className="my-1">{props.height / 10 + " m"}</p>
-                            <p className="my-1">{props.weight / 10 + " kg"}</p>
+                        <div className="my-1 flex items-center">
+                            <p className="w-1/2 font-medium">Height</p>
+                            <p className="w-1/2 font-semibold">{props.height / 10 + " m"}</p>
+                        </div>
+                        <div className="my-1 flex items-center">
+                            <p className="w-1/2 font-medium">Weight</p>
+                            <p className="w-1/2 font-semibold">{props.weight / 10 + " kg"}</p>
                         </div>
                     </div>
-                    <div className="mb-8">
+                    <div className="">
                         {added ? (
                             <button
                                 type="button"
